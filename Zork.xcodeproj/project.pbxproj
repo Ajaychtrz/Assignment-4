@@ -108,6 +108,7 @@
 				FF67A5752C0C753400558DA1 /* Item.h */,
 				FF67A5702C0C753400558DA1 /* Location.cpp */,
 				FF67A5712C0C753400558DA1 /* Location.h */,
+				FF67A5592C0C750700558DA1 /* main.cpp */,
 				FF67A5732C0C753400558DA1 /* NullCommand.cpp */,
 				FF67A5642C0C753400558DA1 /* NullCommand.h */,
 				FF67A56E2C0C753400558DA1 /* NullPassage.cpp */,
@@ -126,7 +127,6 @@
 				FF67A5682C0C753400558DA1 /* RoomDefaultEnterCommand.h */,
 				FF67A5612C0C753400558DA1 /* ZOOrkEngine.cpp */,
 				FF67A56A2C0C753400558DA1 /* ZOOrkEngine.h */,
-				FF67A5592C0C750700558DA1 /* main.cpp */,
 			);
 			path = Zork;
 			sourceTree = "<group>";
