@@ -1,0 +1,372 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FF67A55A2C0C750700558DA1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF67A5592C0C750700558DA1 /* main.cpp */; };
+		FF67A57D2C0C753400558DA1 /* ZOOrkEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF67A5612C0C753400558DA1 /* ZOOrkEngine.cpp */; };
+		FF67A57E2C0C753400558DA1 /* Room.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF67A5622C0C753400558DA1 /* Room.cpp */; };
+		FF67A57F2C0C753400558DA1 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF67A5632C0C753400558DA1 /* Player.cpp */; };
+		FF67A5802C0C753400558DA1 /* PassageDefaultEnterCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF67A5652C0C753400558DA1 /* PassageDefaultEnterCommand.cpp */; };
+		FF67A5812C0C753400558DA1 /* Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF67A5662C0C753400558DA1 /* Character.cpp */; };
+		FF67A5832C0C753400558DA1 /* NullPassage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF67A56E2C0C753400558DA1 /* NullPassage.cpp */; };
+		FF67A5842C0C753400558DA1 /* Item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF67A56F2C0C753400558DA1 /* Item.cpp */; };
+		FF67A5852C0C753400558DA1 /* Location.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF67A5702C0C753400558DA1 /* Location.cpp */; };
+		FF67A5862C0C753400558DA1 /* NullRoom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF67A5722C0C753400558DA1 /* NullRoom.cpp */; };
+		FF67A5872C0C753400558DA1 /* NullCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF67A5732C0C753400558DA1 /* NullCommand.cpp */; };
+		FF67A5882C0C753400558DA1 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF67A5742C0C753400558DA1 /* GameObject.cpp */; };
+		FF67A5892C0C753400558DA1 /* RoomDefaultEnterCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF67A5762C0C753400558DA1 /* RoomDefaultEnterCommand.cpp */; };
+		FF67A58A2C0C753400558DA1 /* Passage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF67A57B2C0C753400558DA1 /* Passage.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FF67A5542C0C750700558DA1 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		FF67A5562C0C750700558DA1 /* Zork */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Zork; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF67A5592C0C750700558DA1 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		FF67A5602C0C753300558DA1 /* NullRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NullRoom.h; sourceTree = "<group>"; };
+		FF67A5612C0C753400558DA1 /* ZOOrkEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ZOOrkEngine.cpp; sourceTree = "<group>"; };
+		FF67A5622C0C753400558DA1 /* Room.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Room.cpp; sourceTree = "<group>"; };
+		FF67A5632C0C753400558DA1 /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		FF67A5642C0C753400558DA1 /* NullCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NullCommand.h; sourceTree = "<group>"; };
+		FF67A5652C0C753400558DA1 /* PassageDefaultEnterCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PassageDefaultEnterCommand.cpp; sourceTree = "<group>"; };
+		FF67A5662C0C753400558DA1 /* Character.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Character.cpp; sourceTree = "<group>"; };
+		FF67A5672C0C753400558DA1 /* NullPassage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NullPassage.h; sourceTree = "<group>"; };
+		FF67A5682C0C753400558DA1 /* RoomDefaultEnterCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomDefaultEnterCommand.h; sourceTree = "<group>"; };
+		FF67A5692C0C753400558DA1 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		FF67A56A2C0C753400558DA1 /* ZOOrkEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZOOrkEngine.h; sourceTree = "<group>"; };
+		FF67A56B2C0C753400558DA1 /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
+		FF67A56C2C0C753400558DA1 /* Passage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Passage.h; sourceTree = "<group>"; };
+		FF67A56E2C0C753400558DA1 /* NullPassage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NullPassage.cpp; sourceTree = "<group>"; };
+		FF67A56F2C0C753400558DA1 /* Item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Item.cpp; sourceTree = "<group>"; };
+		FF67A5702C0C753400558DA1 /* Location.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Location.cpp; sourceTree = "<group>"; };
+		FF67A5712C0C753400558DA1 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
+		FF67A5722C0C753400558DA1 /* NullRoom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NullRoom.cpp; sourceTree = "<group>"; };
+		FF67A5732C0C753400558DA1 /* NullCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NullCommand.cpp; sourceTree = "<group>"; };
+		FF67A5742C0C753400558DA1 /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
+		FF67A5752C0C753400558DA1 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		FF67A5762C0C753400558DA1 /* RoomDefaultEnterCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RoomDefaultEnterCommand.cpp; sourceTree = "<group>"; };
+		FF67A5772C0C753400558DA1 /* Room.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Room.h; sourceTree = "<group>"; };
+		FF67A5782C0C753400558DA1 /* PassageDefaultEnterCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PassageDefaultEnterCommand.h; sourceTree = "<group>"; };
+		FF67A5792C0C753400558DA1 /* Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Command.h; sourceTree = "<group>"; };
+		FF67A57A2C0C753400558DA1 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
+		FF67A57B2C0C753400558DA1 /* Passage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Passage.cpp; sourceTree = "<group>"; };
+		FF67A57C2C0C753400558DA1 /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FF67A5532C0C750700558DA1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FF67A54D2C0C750700558DA1 = {
+			isa = PBXGroup;
+			children = (
+				FF67A5582C0C750700558DA1 /* Zork */,
+				FF67A5572C0C750700558DA1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FF67A5572C0C750700558DA1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FF67A5562C0C750700558DA1 /* Zork */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FF67A5582C0C750700558DA1 /* Zork */ = {
+			isa = PBXGroup;
+			children = (
+				FF67A5662C0C753400558DA1 /* Character.cpp */,
+				FF67A57C2C0C753400558DA1 /* Character.h */,
+				FF67A57A2C0C753400558DA1 /* CMakeLists.txt */,
+				FF67A5792C0C753400558DA1 /* Command.h */,
+				FF67A5742C0C753400558DA1 /* GameObject.cpp */,
+				FF67A56B2C0C753400558DA1 /* GameObject.h */,
+				FF67A56F2C0C753400558DA1 /* Item.cpp */,
+				FF67A5752C0C753400558DA1 /* Item.h */,
+				FF67A5702C0C753400558DA1 /* Location.cpp */,
+				FF67A5712C0C753400558DA1 /* Location.h */,
+				FF67A5732C0C753400558DA1 /* NullCommand.cpp */,
+				FF67A5642C0C753400558DA1 /* NullCommand.h */,
+				FF67A56E2C0C753400558DA1 /* NullPassage.cpp */,
+				FF67A5672C0C753400558DA1 /* NullPassage.h */,
+				FF67A5722C0C753400558DA1 /* NullRoom.cpp */,
+				FF67A5602C0C753300558DA1 /* NullRoom.h */,
+				FF67A57B2C0C753400558DA1 /* Passage.cpp */,
+				FF67A56C2C0C753400558DA1 /* Passage.h */,
+				FF67A5652C0C753400558DA1 /* PassageDefaultEnterCommand.cpp */,
+				FF67A5782C0C753400558DA1 /* PassageDefaultEnterCommand.h */,
+				FF67A5632C0C753400558DA1 /* Player.cpp */,
+				FF67A5692C0C753400558DA1 /* Player.h */,
+				FF67A5622C0C753400558DA1 /* Room.cpp */,
+				FF67A5772C0C753400558DA1 /* Room.h */,
+				FF67A5762C0C753400558DA1 /* RoomDefaultEnterCommand.cpp */,
+				FF67A5682C0C753400558DA1 /* RoomDefaultEnterCommand.h */,
+				FF67A5612C0C753400558DA1 /* ZOOrkEngine.cpp */,
+				FF67A56A2C0C753400558DA1 /* ZOOrkEngine.h */,
+				FF67A5592C0C750700558DA1 /* main.cpp */,
+			);
+			path = Zork;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FF67A5552C0C750700558DA1 /* Zork */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF67A55D2C0C750700558DA1 /* Build configuration list for PBXNativeTarget "Zork" */;
+			buildPhases = (
+				FF67A5522C0C750700558DA1 /* Sources */,
+				FF67A5532C0C750700558DA1 /* Frameworks */,
+				FF67A5542C0C750700558DA1 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Zork;
+			productName = Zork;
+			productReference = FF67A5562C0C750700558DA1 /* Zork */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FF67A54E2C0C750700558DA1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					FF67A5552C0C750700558DA1 = {
+						CreatedOnToolsVersion = 15.4;
+					};
+				};
+			};
+			buildConfigurationList = FF67A5512C0C750700558DA1 /* Build configuration list for PBXProject "Zork" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FF67A54D2C0C750700558DA1;
+			productRefGroup = FF67A5572C0C750700558DA1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FF67A5552C0C750700558DA1 /* Zork */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FF67A5522C0C750700558DA1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF67A5842C0C753400558DA1 /* Item.cpp in Sources */,
+				FF67A5892C0C753400558DA1 /* RoomDefaultEnterCommand.cpp in Sources */,
+				FF67A58A2C0C753400558DA1 /* Passage.cpp in Sources */,
+				FF67A57F2C0C753400558DA1 /* Player.cpp in Sources */,
+				FF67A5882C0C753400558DA1 /* GameObject.cpp in Sources */,
+				FF67A57E2C0C753400558DA1 /* Room.cpp in Sources */,
+				FF67A5862C0C753400558DA1 /* NullRoom.cpp in Sources */,
+				FF67A55A2C0C750700558DA1 /* main.cpp in Sources */,
+				FF67A5852C0C753400558DA1 /* Location.cpp in Sources */,
+				FF67A5872C0C753400558DA1 /* NullCommand.cpp in Sources */,
+				FF67A5812C0C753400558DA1 /* Character.cpp in Sources */,
+				FF67A5802C0C753400558DA1 /* PassageDefaultEnterCommand.cpp in Sources */,
+				FF67A57D2C0C753400558DA1 /* ZOOrkEngine.cpp in Sources */,
+				FF67A5832C0C753400558DA1 /* NullPassage.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		FF67A55B2C0C750700558DA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		FF67A55C2C0C750700558DA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		FF67A55E2C0C750700558DA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X252CPT6V2;
+				ENABLE_HARDENED_RUNTIME = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FF67A55F2C0C750700558DA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X252CPT6V2;
+				ENABLE_HARDENED_RUNTIME = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FF67A5512C0C750700558DA1 /* Build configuration list for PBXProject "Zork" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF67A55B2C0C750700558DA1 /* Debug */,
+				FF67A55C2C0C750700558DA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF67A55D2C0C750700558DA1 /* Build configuration list for PBXNativeTarget "Zork" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF67A55E2C0C750700558DA1 /* Debug */,
+				FF67A55F2C0C750700558DA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FF67A54E2C0C750700558DA1 /* Project object */;
+}
