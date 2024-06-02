@@ -24,7 +24,11 @@ private:
     void handleTakeCommand(std::vector<std::string>);
     void handleDropCommand(std::vector<std::string>);
     void handleUseCommand(std::vector<std::string>);
+    void handleSolveCommand(std::vector<std::string>);
     void handleQuitCommand(std::vector<std::string>);
+
+    void displayPrompt();
+    void displayRoomDescription(); // Add this line
 
     static std::vector<std::string> tokenizeString(const std::string&);
     static std::string makeLowercase(std::string);

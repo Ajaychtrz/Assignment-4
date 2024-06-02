@@ -9,12 +9,12 @@ ZOOrkEngine::ZOOrkEngine(std::shared_ptr<Room> start) {
     player = Player::instance();
     player->setCurrentRoom(start.get());
     player->getCurrentRoom()->enter();
+    displayRoomDescription(); // Initial room description
+    displayPrompt();
 }
 
 void ZOOrkEngine::run() {
     while (!gameOver) {
-        std::cout << "> ";
-
         std::string input;
         std::getline(std::cin, input);
 
@@ -26,25 +26,40 @@ void ZOOrkEngine::run() {
             handleGoCommand(arguments);
         } else if ((command == "look") || (command == "inspect")) {
             handleLookCommand(arguments);
-        } else if ((command == "take") || (command == "get")) {
+        } else if ((command == "take") || (command == "get") || (command == "pick up")) {
             handleTakeCommand(arguments);
         } else if (command == "drop") {
             handleDropCommand(arguments);
         } else if (command == "use") {
             handleUseCommand(arguments);
+        } else if (command == "solve") {
+            handleSolveCommand(arguments);
         } else if (command == "inventory") {
             player->showInventory();
+            displayPrompt();
         } else if (command == "quit") {
             handleQuitCommand(arguments);
         } else {
             std::cout << "I don't understand that command.\n";
+            displayPrompt();
         }
     }
+}
+
+void ZOOrkEngine::displayPrompt() {
+    std::cout << "\nWhat would you like to do? (look/take/solve/move/craft/use/inventory/quit) ";
+}
+
+void ZOOrkEngine::displayRoomDescription() {
+    Room* currentRoom = player->getCurrentRoom();
+    std::cout << "\nHi Rodie, You are in the " << currentRoom->getName() << ".\n";
+    std::cout << currentRoom->getDescription() << "\n";
 }
 
 void ZOOrkEngine::handleGoCommand(std::vector<std::string> arguments) {
     if (arguments.empty()) {
         std::cout << "Go where? Specify a direction (north, south, east, west).\n";
+        displayPrompt();
         return;
     }
 
@@ -55,8 +70,10 @@ void ZOOrkEngine::handleGoCommand(std::vector<std::string> arguments) {
     if (passage) {
         player->setCurrentRoom(passage->getTo());
         passage->enter();
+        displayRoomDescription();
     } else {
         std::cout << "You can't go that way.\n";
+        displayPrompt();
     }
 }
 
@@ -64,10 +81,13 @@ void ZOOrkEngine::handleLookCommand(std::vector<std::string> arguments) {
     Room* currentRoom = player->getCurrentRoom();
 
     if (arguments.empty()) {
-        // Look at the current room
-        std::cout << currentRoom->getDescription() << std::endl;
-        currentRoom->showItems();
-        currentRoom->showCharacters();
+        std::cout << "Items in the room: ";
+        if (currentRoom->getItems().empty()) {
+            std::cout << "None\n";
+        } else {
+            std::cout << "\n";
+            currentRoom->showItems();
+        }
     } else {
         // Look at a specific object in the room
         std::string target = arguments[0];
@@ -78,17 +98,27 @@ void ZOOrkEngine::handleLookCommand(std::vector<std::string> arguments) {
             std::cout << "You don't see anything special about " << target << "." << std::endl;
         }
     }
+
+    displayPrompt();
 }
 
 void ZOOrkEngine::handleTakeCommand(std::vector<std::string> arguments) {
+    Room* currentRoom = player->getCurrentRoom();
+
+    if (!currentRoom->isPuzzleSolved()) {
+        std::cout << "You cannot pick item without solving the puzzle.\n";
+        displayPrompt();
+        return;
+    }
+
     if (arguments.empty()) {
         std::cout << "Take what? Items in the room: ";
-        player->getCurrentRoom()->showItems();
+        currentRoom->showItems();
+        displayPrompt();
         return;
     }
 
     std::string itemIdentifier = arguments[0];
-    Room* currentRoom = player->getCurrentRoom();
     const auto& items = currentRoom->getItems(); // Use the getter method to access items
 
     // Check if the identifier is a number
@@ -105,12 +135,14 @@ void ZOOrkEngine::handleTakeCommand(std::vector<std::string> arguments) {
     } catch (std::invalid_argument&) {
         std::cout << "Invalid item number.\n";
     }
-}
 
+    displayPrompt();
+}
 
 void ZOOrkEngine::handleDropCommand(std::vector<std::string> arguments) {
     if (arguments.empty()) {
         std::cout << "Drop what?\n";
+        displayPrompt();
         return;
     }
 
@@ -125,11 +157,14 @@ void ZOOrkEngine::handleDropCommand(std::vector<std::string> arguments) {
     } else {
         std::cout << "You don't have a " << itemName << ".\n";
     }
+
+    displayPrompt();
 }
 
 void ZOOrkEngine::handleUseCommand(std::vector<std::string> arguments) {
     if (arguments.empty()) {
         std::cout << "Use what?\n";
+        displayPrompt();
         return;
     }
 
@@ -141,6 +176,33 @@ void ZOOrkEngine::handleUseCommand(std::vector<std::string> arguments) {
     } else {
         std::cout << "You don't have a " << itemName << ".\n";
     }
+
+    displayPrompt();
+}
+
+void ZOOrkEngine::handleSolveCommand(std::vector<std::string> arguments) {
+    Room* currentRoom = player->getCurrentRoom();
+    if (!currentRoom->hasPuzzle()) {
+        std::cout << "There is no puzzle to solve in this room.\n";
+        displayPrompt();
+        return;
+    }
+
+    std::string attempt;
+    if (arguments.empty()) {
+        std::cout << "Solve the puzzle: " << currentRoom->getPuzzle() << "\n";
+        std::getline(std::cin, attempt);
+    } else {
+        attempt = arguments[0];
+    }
+
+    if (currentRoom->solvePuzzle(attempt)) {
+        std::cout << "Correct! You have solved the puzzle in the " << currentRoom->getName() << ". Now you can pick the item as a reward.\n";
+    } else {
+        std::cout << "Incorrect. Try again.\n";
+    }
+
+    displayPrompt();
 }
 
 void ZOOrkEngine::handleQuitCommand(std::vector<std::string> arguments) {
@@ -151,6 +213,8 @@ void ZOOrkEngine::handleQuitCommand(std::vector<std::string> arguments) {
 
     if (quitStr == "y" || quitStr == "yes") {
         gameOver = true;
+    } else {
+        displayPrompt();
     }
 }
 

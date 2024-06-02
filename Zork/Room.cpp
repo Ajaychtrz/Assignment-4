@@ -3,11 +3,13 @@
 #include <utility>
 #include <iostream>
 
-Room::Room(const std::string &n, const std::string &d) : Location(n, d), description(d) {
+Room::Room(const std::string &n, const std::string &d, const std::string &puzzle, const std::string &solution)
+    : Location(n, d), description(d), puzzle(puzzle), solution(solution) {
     enterCommand = std::make_shared<RoomDefaultEnterCommand>(this);
 }
 
-Room::Room(const std::string &n, const std::string &d, std::shared_ptr<Command> c) : Location(n, d, std::move(c)), description(d) {}
+Room::Room(const std::string &n, const std::string &d, std::shared_ptr<Command> c, const std::string &puzzle, const std::string &solution)
+    : Location(n, d, std::move(c)), description(d), puzzle(puzzle), solution(solution) {}
 
 void Room::addPassage(const std::string &direction, std::shared_ptr<Passage> p) {
     passageMap[direction] = std::move(p);
@@ -53,14 +55,9 @@ std::shared_ptr<Item> Room::getItem(const std::string &itemName) {
 }
 
 void Room::showItems() const {
-    std::cout << "Items in the room: \n";
-    if (items.empty()) {
-        std::cout << "There are no items here.\n";
-    } else {
-        int index = 1;
-        for (const auto& item : items) {
-            std::cout << index++ << ". " << item->getName() << "\n";
-        }
+    int index = 1;
+    for (const auto& item : items) {
+        std::cout << index++ << ". " << item->getName() << "\n";
     }
 }
 
@@ -88,15 +85,14 @@ std::shared_ptr<Character> Room::getCharacter(const std::string &characterName) 
 }
 
 void Room::showCharacters() const {
-    std::cout << "Characters in the room: ";
-    if (characters.empty()) {
-        std::cout << "There are no characters here.\n";
-    } else {
-        for (const auto& character : characters) {
-            std::cout << character->getName() << ", ";
-        }
-        std::cout << "\n";
+    for (const auto& character : characters) {
+        std::cout << character->getName() << ", ";
     }
+    std::cout << "\n";
+}
+
+const std::vector<std::shared_ptr<Character>>& Room::getCharacters() const {
+    return characters;
 }
 
 std::string Room::getTargetDescription(const std::string &target) const {
@@ -115,4 +111,12 @@ std::string Room::getTargetDescription(const std::string &target) const {
     }
 
     return "There is nothing special about " + target + ".";
+}
+
+bool Room::solvePuzzle(const std::string &attempt) {
+    if (attempt == solution) {
+        puzzleSolved = true;
+        return true;
+    }
+    return false;
 }

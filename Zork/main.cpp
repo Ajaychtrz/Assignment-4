@@ -7,36 +7,46 @@
 #include "Item.h"
 
 int main() {
-    // Create the rooms
+    // Create the rooms with puzzles
     std::shared_ptr<Room> entrance_hall = std::make_shared<Room>("Entrance Hall",
-                           "A grand hall with stone walls covered in moss. There's an inscription on the wall.\n");
+                           "A grand hall with stone walls covered in moss. There's an inscription on the wall.\n",
+                           "Translate the ancient inscription to reveal a secret code.", "translate");
 
     std::shared_ptr<Room> mirror_chamber = std::make_shared<Room>("Mirror Chamber",
-                                    "A room filled with mirrors of various sizes and shapes.\n");
+                                    "A room filled with mirrors of various sizes and shapes.\n",
+                                    "Align the mirrors to reflect a beam of light onto a hidden sensor.", "reflect");
 
     std::shared_ptr<Room> library_of_whispers = std::make_shared<Room>("Library of Whispers",
-                                  "Shelves filled with dusty old books, some of which seem to whisper as you pass.\n");
+                                  "Shelves filled with dusty old books, some of which seem to whisper as you pass.\n",
+                                  "Find the correct book to open a hidden passage.", "book");
 
     std::shared_ptr<Room> clockwork_room = std::make_shared<Room>("Clockwork Room",
-                                 "A room dominated by a giant, intricate clockwork mechanism.\n");
+                                 "A room dominated by a giant, intricate clockwork mechanism.\n",
+                                 "Adjust the gears and levers to set the clock to the correct time.", "time");
 
     std::shared_ptr<Room> garden_of_illusions = std::make_shared<Room>("Garden of Illusions",
-                                    "An underground garden with plants that change shape and color.\n");
+                                    "An underground garden with plants that change shape and color.\n",
+                                    "Identify and pluck the correct magical flower to reveal the next clue.", "flower");
 
     std::shared_ptr<Room> hall_of_echoes = std::make_shared<Room>("Hall of Echoes",
-                                "A long, narrow hallway where every sound echoes infinitely.\n");
+                                "A long, narrow hallway where every sound echoes infinitely.\n",
+                                "Solve the riddle whispered by the echoes.", "riddle");
 
     std::shared_ptr<Room> frozen_chamber = std::make_shared<Room>("Frozen Chamber",
-                                  "A room encased in ice, with a pedestal at its center.\n");
+                                  "A room encased in ice, with a pedestal at its center.\n",
+                                  "Thaw the ice without damaging the room or its contents.", "thaw");
 
     std::shared_ptr<Room> shadow_room = std::make_shared<Room>("Shadow Room",
-                                "A dark room where shadows move independently of their objects.\n");
+                                "A dark room where shadows move independently of their objects.\n",
+                                "Align the shadows correctly to reveal a hidden door.", "shadow");
 
     std::shared_ptr<Room> hall_of_champions = std::make_shared<Room>("Hall of Champions",
-                                      "Statues of legendary Zork heroes line the walls.\n");
+                                      "Statues of legendary Zork heroes line the walls.\n",
+                                      "Pay homage to the heroes in the correct order.", "heroes");
 
     std::shared_ptr<Room> treasure_vault = std::make_shared<Room>("Treasure Vault",
-                                    "A room filled with gold, jewels, and a large, ornate chest.\n");
+                                    "A room filled with gold, jewels, and a large, ornate chest.\n",
+                                    "Solve the final lock on the chest to claim your reward.", "unlock");
 
     // Create passages between the rooms
     Passage::createBasicPassage(entrance_hall.get(), mirror_chamber.get(), "north", true);

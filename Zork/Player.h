@@ -7,7 +7,7 @@
 #include "Item.h"
 #include <vector>
 #include <memory>
-#include <algorithm>
+#include <iostream>
 
 class Player : public Character {
 public:
@@ -20,14 +20,16 @@ public:
     }
 
     void setCurrentRoom(Room*);
+
     Room* getCurrentRoom() const;
 
-    void addItem(std::shared_ptr<Item>);
-    std::shared_ptr<Item> getItem(const std::string&);
-    void removeItem(const std::string&);
+    void addItem(std::shared_ptr<Item> item);
+    void removeItem(const std::string& itemName);
+    std::shared_ptr<Item> getItem(const std::string& itemName);
     void showInventory() const;
 
     Player(const Player &) = delete;
+
     Player &operator=(const Player &) = delete;
 
 private:
