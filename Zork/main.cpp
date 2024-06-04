@@ -79,6 +79,9 @@ int main() {
     std::shared_ptr<Item> silver_key = std::make_shared<Item>("Silver Key", "A shiny silver key that unlocks mysterious doors.");
     mirror_chamber->addItem(silver_key);
 
+    std::shared_ptr<Item> stick = std::make_shared<Item>("Stick", "A sturdy stick that can be used for crafting.");
+    mirror_chamber->addItem(stick);
+
     std::shared_ptr<Item> mysterious_book = std::make_shared<Item>("Mysterious Book", "An ancient book filled with strange writings.");
     library_of_whispers->addItem(mysterious_book);
 
@@ -102,6 +105,9 @@ int main() {
 
     std::shared_ptr<Item> master_key = std::make_shared<Item>("Master Key", "A key that unlocks the final treasure chest.");
     treasure_vault->addItem(master_key);
+
+    // Add box puzzle to Clockwork Room
+    clockwork_room->setBoxPuzzle({"Clockwork Key", "trap", "trap"});
 
     // Initialize the game engine with the starting room
     ZOOrkEngine zoork(entrance_hall);

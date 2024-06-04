@@ -22,7 +22,7 @@ void ZOOrkEngine::run() {
         std::string command = words[0];
         std::vector<std::string> arguments(words.begin() + 1, words.end());
 
-        if (command == "go") {
+        if (command == "go" || command == "move") {
             handleGoCommand(arguments);
         } else if ((command == "look") || (command == "inspect")) {
             handleLookCommand(arguments);
@@ -34,6 +34,8 @@ void ZOOrkEngine::run() {
             handleUseCommand(arguments);
         } else if (command == "solve") {
             handleSolveCommand(arguments);
+        } else if (command == "craft") {
+            handleCraftCommand(arguments);
         } else if (command == "inventory") {
             player->showInventory();
             displayPrompt();
@@ -68,25 +70,35 @@ void ZOOrkEngine::handleGoCommand(std::vector<std::string> arguments) {
     auto passage = currentRoom->getPassage(direction);
 
     if (passage) {
-        player->setCurrentRoom(passage->getTo());
-        passage->enter();
-        displayRoomDescription();
+        if (passage->getTo()->getName() == "Shadow Room" && !player->hasItem("Torch")) {
+            std::cout << "It's too dark to enter the Shadow Room without a Torch.\n";
+        } else if (currentRoom->getName() == "Treasure Vault" && direction == "east") {
+            handleGameOver();
+            return;
+        } else {
+            player->setCurrentRoom(passage->getTo());
+            passage->enter();
+            displayRoomDescription();
+        }
     } else {
         std::cout << "You can't go that way.\n";
-        displayPrompt();
     }
+    displayPrompt();
 }
 
 void ZOOrkEngine::handleLookCommand(std::vector<std::string> arguments) {
     Room* currentRoom = player->getCurrentRoom();
 
     if (arguments.empty()) {
+        const auto& items = currentRoom->getItems();
         std::cout << "Items in the room: ";
-        if (currentRoom->getItems().empty()) {
+        if (items.empty()) {
             std::cout << "None\n";
         } else {
             std::cout << "\n";
-            currentRoom->showItems();
+            for (size_t i = 0; i < items.size(); ++i) {
+                std::cout << i + 1 << ". " << items[i]->getName() << "\n";
+            }
         }
     } else {
         // Look at a specific object in the room
@@ -188,20 +200,42 @@ void ZOOrkEngine::handleSolveCommand(std::vector<std::string> arguments) {
         return;
     }
 
-    std::string attempt;
-    if (arguments.empty()) {
-        std::cout << "Solve the puzzle: " << currentRoom->getPuzzle() << "\n";
-        std::getline(std::cin, attempt);
+    if (currentRoom->getName() == "Clockwork Room" && currentRoom->hasBoxPuzzle()) {
+        int choice;
+        std::cout << "There are three boxes here. One contains the item to unlock the next room, the other two contain traps. Choose a box (1, 2, or 3): ";
+        std::cin >> choice;
+        if (currentRoom->solveBoxPuzzle(choice, player)) {
+            std::cout << "You found the item to unlock the Garden of Illusions!\n";
+        }
     } else {
-        attempt = arguments[0];
+        std::string attempt;
+        if (arguments.empty()) {
+            std::cout << "Solve the puzzle: " << currentRoom->getPuzzle() << "\n";
+            std::getline(std::cin, attempt);
+        } else {
+            attempt = arguments[0];
+        }
+
+        if (currentRoom->solvePuzzle(attempt)) {
+            std::cout << "Correct! You have solved the puzzle in the " << currentRoom->getName() << ". Now you can pick the item as a reward.\n";
+        } else {
+            std::cout << "Incorrect. Try again.\n";
+        }
     }
 
-    if (currentRoom->solvePuzzle(attempt)) {
-        std::cout << "Correct! You have solved the puzzle in the " << currentRoom->getName() << ". Now you can pick the item as a reward.\n";
-    } else {
-        std::cout << "Incorrect. Try again.\n";
-    }
+    displayPrompt();
+}
 
+void ZOOrkEngine::handleCraftCommand(std::vector<std::string> arguments) {
+    if (player->hasItem("Stick") && player->hasItem("Fire Amulet")) {
+        player->removeItem("Stick");
+        player->removeItem("Fire Amulet");
+        std::shared_ptr<Item> torch = std::make_shared<Item>("Torch", "A torch made from a stick and a fire amulet, it can light up dark places.");
+        player->addItem(torch);
+        std::cout << "You have crafted a Torch from the Stick and Fire Amulet.\n";
+    } else {
+        std::cout << "You don't have the necessary items to craft anything.\n";
+    }
     displayPrompt();
 }
 
@@ -216,6 +250,14 @@ void ZOOrkEngine::handleQuitCommand(std::vector<std::string> arguments) {
     } else {
         displayPrompt();
     }
+}
+
+void ZOOrkEngine::handleGameOver() {
+    std::cout << "\nCongratulations, Rodie! You have reached the end of the game.\n";
+    std::cout << "Your final inventory: \n";
+    player->showInventory();
+    std::cout << "Your final health: " << player->getHealth() << "\n";
+    gameOver = true;
 }
 
 std::vector<std::string> ZOOrkEngine::tokenizeString(const std::string &input) {

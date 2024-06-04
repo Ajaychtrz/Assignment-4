@@ -29,6 +29,15 @@ std::shared_ptr<Item> Player::getItem(const std::string& itemName) {
     return nullptr;
 }
 
+bool Player::hasItem(const std::string& itemName) const {
+    for (const auto& item : inventory) {
+        if (item->getName() == itemName) {
+            return true;
+        }
+    }
+    return false;
+}
+
 void Player::showInventory() const {
     std::cout << "Inventory: ";
     if (inventory.empty()) {
@@ -39,4 +48,11 @@ void Player::showInventory() const {
         }
     }
     std::cout << "\n";
+}
+
+void Player::reduceHealth(int amount) {
+    health -= amount;
+    if (health < 0) {
+        health = 0;
+    }
 }

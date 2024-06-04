@@ -1,7 +1,8 @@
-#include "NullPassage.h"
 #include "Room.h"
-#include <utility>
+#include "NullPassage.h"
+#include <algorithm>
 #include <iostream>
+#include <utility>
 
 Room::Room(const std::string &n, const std::string &d, const std::string &puzzle, const std::string &solution)
     : Location(n, d), description(d), puzzle(puzzle), solution(solution) {
@@ -117,6 +118,28 @@ bool Room::solvePuzzle(const std::string &attempt) {
     if (attempt == solution) {
         puzzleSolved = true;
         return true;
+    }
+    return false;
+}
+
+void Room::setBoxPuzzle(const std::vector<std::string> &boxItems) {
+    this->boxItems = boxItems;
+    hasBoxPuzzle = true;
+}
+
+bool Room::solveBoxPuzzle(int choice, std::shared_ptr<Player> player) {
+    if (!hasBoxPuzzle) {
+        return false;
+    }
+    if (choice >= 1 && choice <= boxItems.size()) {
+        if (boxItems[choice - 1] != "trap") {
+            puzzleSolved = true;
+            return true;
+        } else {
+            player->reduceHealth(15);
+            std::cout << "You triggered a trap! Your health is now " << player->getHealth() << "%.\n";
+            return false;
+        }
     }
     return false;
 }

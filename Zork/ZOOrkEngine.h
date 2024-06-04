@@ -25,13 +25,14 @@ private:
     void handleDropCommand(std::vector<std::string>);
     void handleUseCommand(std::vector<std::string>);
     void handleSolveCommand(std::vector<std::string>);
+    void handleCraftCommand(std::vector<std::string>);
     void handleQuitCommand(std::vector<std::string>);
-
-    void displayPrompt();
-    void displayRoomDescription(); // Add this line
+    void handleGameOver();
 
     static std::vector<std::string> tokenizeString(const std::string&);
     static std::string makeLowercase(std::string);
+    void displayPrompt();
+    void displayRoomDescription();
 };
 
 #endif //ZOORK_ZOORKENGINE_H

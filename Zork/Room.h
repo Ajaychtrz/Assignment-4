@@ -41,6 +41,10 @@ public:
     bool solvePuzzle(const std::string &attempt);
     bool isPuzzleSolved() const { return puzzleSolved; }
 
+    // Box puzzle related methods
+    void setBoxPuzzle(const std::vector<std::string> &boxItems);
+    bool solveBoxPuzzle(int choice, std::shared_ptr<Player> player);
+
 protected:
     std::map<std::string, std::shared_ptr<Passage>> passageMap;
     std::string description;
@@ -49,6 +53,8 @@ protected:
     bool puzzleSolved = false;
     std::vector<std::shared_ptr<Item>> items;
     std::vector<std::shared_ptr<Character>> characters;
+    std::vector<std::string> boxItems;
+    bool hasBoxPuzzle = false;
 };
 
 #endif //ZOORK_ROOM_H
