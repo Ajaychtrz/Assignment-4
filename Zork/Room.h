@@ -29,7 +29,7 @@ public:
     bool solvePuzzle(const std::string& attempt);
     bool isPuzzleSolved() const { return puzzleSolved; }
     std::string getSolution() const { return solution; }
-    std::string getPuzzle() const { return puzzle; } // Add this line
+    std::string getPuzzle() const { return puzzle; }
 
     void addItem(std::shared_ptr<Item> item);
     void removeItem(const std::string& itemName);
@@ -53,6 +53,8 @@ private:
     bool has_box_puzzle = false;
     int box_with_key;
     std::vector<std::shared_ptr<Character>> characters;
+
+    void initializeBoxPuzzle();
 };
 
 #endif //ZOORK_ROOM_H

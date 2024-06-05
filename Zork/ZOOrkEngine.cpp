@@ -67,14 +67,31 @@ void ZOOrkEngine::handleGoCommand(std::vector<std::string> arguments) {
 
     std::string direction = arguments[0];
     Room* currentRoom = player->getCurrentRoom();
+
+    // Check if player is in the Treasure Vault and trying to move east
+    if (currentRoom->getName() == "Treasure Vault" && direction == "east") {
+        if (player->hasItem("Master Key")) {
+            handleGameOver();
+            return;
+        } else {
+            std::cout << "You cannot end the game without the Master Key.\n";
+            displayPrompt();
+            return;
+        }
+    }
+
+    // Other movement conditions
+    if (currentRoom->getName() == "Clockwork Room" && direction == "east" && !currentRoom->isPuzzleSolved()) {
+        std::cout << "You must solve the puzzle in the Clockwork Room before moving east to the Garden of Illusions.\n";
+        displayPrompt();
+        return;
+    }
+
     auto passage = currentRoom->getPassage(direction);
 
     if (passage) {
         if (passage->getTo()->getName() == "Shadow Room" && !player->hasItem("Torch")) {
             std::cout << "It's too dark to enter the Shadow Room without a Torch.\n";
-        } else if (currentRoom->getName() == "Treasure Vault" && direction == "east") {
-            handleGameOver();
-            return;
         } else {
             player->setCurrentRoom(passage->getTo());
             passage->enter();
