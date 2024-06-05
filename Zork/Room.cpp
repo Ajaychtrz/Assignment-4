@@ -2,6 +2,7 @@
 #include "NullPassage.h"
 #include <utility>
 #include <random>
+#include <algorithm>
 
 Room::Room(const std::string &n, const std::string &d, const std::string& p, const std::string& s)
     : Location(n, d), description(d), puzzle(p), solution(s) {
@@ -97,4 +98,8 @@ bool Room::solveBoxPuzzle(int boxNumber) {
 
 void Room::addCharacter(std::shared_ptr<Character> character) {
     characters.push_back(character);
+}
+
+void Room::enter() {
+    // Handle any logic needed for entering the room, but do not print the description.
 }

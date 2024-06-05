@@ -1,5 +1,5 @@
-#ifndef ZOORK_PLAYER_H
-#define ZOORK_PLAYER_H
+#ifndef ZOOrk_PLAYER_H
+#define ZOOrk_PLAYER_H
 
 #include "Character.h"
 #include "Location.h"
@@ -26,7 +26,8 @@ public:
     void addItem(std::shared_ptr<Item> item);
     void removeItem(const std::string& itemName);
     std::shared_ptr<Item> getItem(const std::string& itemName);
-    void showInventory() const;
+    std::vector<std::shared_ptr<Item>> getInventory() const; // Add this line
+    void showInventory(bool gameOver = false) const; // Add gameOver parameter
     void reduceHealth(int amount);
     int getHealth() const { return health; }
     bool hasItem(const std::string& itemName) const;

@@ -29,14 +29,21 @@ std::shared_ptr<Item> Player::getItem(const std::string& itemName) {
     return nullptr;
 }
 
-void Player::showInventory() const {
-    std::cout << "Inventory: ";
+std::vector<std::shared_ptr<Item>> Player::getInventory() const {
+    return inventory;
+}
+
+void Player::showInventory(bool gameOver) const {
+    std::cout << "Inventory:\n";
     if (inventory.empty()) {
         std::cout << "You are not carrying anything.";
     } else {
-        for (const auto& item : inventory) {
-            std::cout << item->getName() << ", ";
+        for (size_t i = 0; i < inventory.size(); ++i) {
+            std::cout << i + 1 << ". " << inventory[i]->getName() << ",\n";
         }
+    }
+    if (!gameOver) {
+        std::cout << "\nTo drop an item, use the command 'drop' followed by the item number.\n";
     }
     std::cout << "\n";
 }

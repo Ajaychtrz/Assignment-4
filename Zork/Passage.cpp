@@ -12,10 +12,6 @@ std::string Passage::oppositeDirection(const std::string &s) {
     else if (s == "south") return "north";
     else if (s == "east") return "west";
     else if (s == "west") return "east";
-    else if (s == "up") return "down";
-    else if (s == "down") return "up";
-    else if (s == "in") return "out";
-    else if (s == "out") return "in";
     else return "unknown_direction";
 }
 

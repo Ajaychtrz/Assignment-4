@@ -1,5 +1,5 @@
-#ifndef ZOORK_ZOORKENGINE_H
-#define ZOORK_ZOORKENGINE_H
+#ifndef ZOORKENGINE_H
+#define ZOORKENGINE_H
 
 #include "Player.h"
 #include "Location.h"
@@ -17,23 +17,24 @@ public:
 
 private:
     bool gameOver = false;
+    bool gameStarted = false; // Add a flag to check if the game has started
     Player *player;
 
     void handleGoCommand(std::vector<std::string>);
     void handleLookCommand(std::vector<std::string>);
     void handleTakeCommand(std::vector<std::string>);
     void handleDropCommand(std::vector<std::string>);
-    void handleUseCommand(std::vector<std::string>);
     void handleSolveCommand(std::vector<std::string>);
     void handleCraftCommand(std::vector<std::string>);
     void handleQuitCommand(std::vector<std::string>);
-    void handleBoxPuzzle(); // Added declaration
+    void handleStartCommand();
     void handleGameOver();
 
     static std::vector<std::string> tokenizeString(const std::string&);
     static std::string makeLowercase(std::string);
     void displayPrompt();
     void displayRoomDescription();
+    void displayWelcomeMessage(); 
 };
 
-#endif //ZOORK_ZOORKENGINE_H
+#endif //ZOORKENGINE_H

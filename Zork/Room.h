@@ -43,6 +43,9 @@ public:
 
     void addCharacter(std::shared_ptr<Character> character);
 
+    // Add the declaration of the enter method
+    void enter();
+
 private:
     std::map<std::string, std::shared_ptr<Passage>> passageMap;
     std::string description;
