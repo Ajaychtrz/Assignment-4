@@ -34,7 +34,7 @@ std::vector<std::shared_ptr<Item>> Player::getInventory() const {
 }
 
 void Player::showInventory(bool gameOver) const {
-    std::cout << "Inventory:\n";
+    std::cout << "\nInventory:\n";
     if (inventory.empty()) {
         std::cout << "You are not carrying anything.";
     } else {
@@ -42,18 +42,9 @@ void Player::showInventory(bool gameOver) const {
             std::cout << i + 1 << ". " << inventory[i]->getName() << ",\n";
         }
     }
-    if (!gameOver) {
-        std::cout << "\nTo drop an item, use the command 'drop' followed by the item number.\n";
-    }
     std::cout << "\n";
 }
 
-void Player::reduceHealth(int amount) {
-    health -= amount;
-    if (health < 0) {
-        health = 0;
-    }
-}
 
 bool Player::hasItem(const std::string& itemName) const {
     for (const auto& item : inventory) {

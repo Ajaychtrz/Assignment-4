@@ -8,106 +8,100 @@
 
 int main() {
     // Create the rooms with puzzles
-    std::shared_ptr<Room> entrance_hall = std::make_shared<Room>("Entrance Hall",
-                           "A grand hall with stone walls covered in moss. There's an inscription on the wall.\n",
-                           "Translate the ancient inscription to reveal a secret code.", "translate");
+    std::shared_ptr<Room> catacomb_entrance = std::make_shared<Room>("Catacomb Entrance",
+                           "A dark and foreboding entrance to the ancient catacombs. The air is musty, and you can hear faint echoes from within.\n",
+                           "Find the hidden lever to open the way further in.", "lever");
 
-    std::shared_ptr<Room> mirror_chamber = std::make_shared<Room>("Mirror Chamber",
-                                    "A room filled with mirrors of various sizes and shapes.\n",
-                                    "Align the mirrors to reflect a beam of light onto a hidden sensor.", "reflect");
+    std::shared_ptr<Room> hall_of_whispers = std::make_shared<Room>("Hall of Whispers",
+                                    "A long hallway where every sound seems to be amplified. The walls are lined with ancient carvings that seem to whisper secrets of the past.\n",
+                                    "Decipher the whispers to reveal a hidden message.", "whispers");
 
-    std::shared_ptr<Room> library_of_whispers = std::make_shared<Room>("Library of Whispers",
-                                  "Shelves filled with dusty old books, some of which seem to whisper as you pass.\n",
-                                  "Find the correct book to open a hidden passage.", "book");
+    std::shared_ptr<Room> hidden_passageway = std::make_shared<Room>("Hidden Passageway",
+                                  "A narrow, secret passage leading deeper into the catacombs. The walls are covered in ancient runes that glow faintly.\n",
+                                  "Use the shadows to find a hidden key.", "glow");
 
-    std::shared_ptr<Room> clockwork_room = std::make_shared<Room>("Clockwork Room",
-                                 "A room dominated by a giant, intricate clockwork mechanism.\n",
-                                 "box puzzle", "");
+    std::shared_ptr<Room> archive_of_elders = std::make_shared<Room>("Archive of Elders",
+                                 "A dusty archive filled with ancient scrolls and tomes. The knowledge of Eldoria’s past is stored here, but some scrolls are written in cryptic languages.\n",
+                                 "Find the scroll that translates the ancient text.", "scroll");
 
-    std::shared_ptr<Room> garden_of_illusions = std::make_shared<Room>("Garden of Illusions",
-                                    "An underground garden with plants that change shape and color.\n",
-                                    "Identify and pluck the correct magical flower to reveal the next clue.", "flower");
+    std::shared_ptr<Room> sanctuary_of_light = std::make_shared<Room>("Sanctuary of Light",
+                                    "A bright, radiant room that seems out of place in the dark catacombs. A glowing crystal in the center illuminates the space.\n",
+                                    "Use the crystal's light to reveal a hidden path.", "crystal");
 
-    std::shared_ptr<Room> hall_of_echoes = std::make_shared<Room>("Hall of Echoes",
-                                "A long, narrow hallway where every sound echoes infinitely.\n",
-                                "Solve the riddle whispered by the echoes.", "riddle");
+    std::shared_ptr<Room> armory_of_valor = std::make_shared<Room>("Armory of Valor",
+                                "A room filled with ancient weapons and armor, some of which still shimmer with magical enchantments.\n",
+                                "Equip the right armor to gain access to the next area.", "armor");
 
-    std::shared_ptr<Room> frozen_chamber = std::make_shared<Room>("Frozen Chamber",
-                                  "A room encased in ice, with a pedestal at its center.\n",
-                                  "Thaw the ice without damaging the room or its contents.", "thaw");
+    std::shared_ptr<Room> hall_of_mirrors = std::make_shared<Room>("Hall of Mirrors",
+                                  "A disorienting hallway lined with mirrors that reflect not only your image but also strange, otherworldly scenes.\n",
+                                  "Align the mirrors to reveal a hidden door.", "mirrors");
 
-    std::shared_ptr<Room> shadow_room = std::make_shared<Room>("Shadow Room",
-                                "A dark room where shadows move independently of their objects.\n",
-                                "Align the shadows correctly to reveal a hidden door.", "shadow");
+    std::shared_ptr<Room> throne_of_kings = std::make_shared<Room>("Throne of Kings",
+                                "A grand room with a majestic throne at the far end, once the seat of Eldoria’s rulers. The air is thick with a sense of lost glory.\n",
+                                "Sit on the throne to unlock a hidden compartment.", "throne");
 
-    std::shared_ptr<Room> hall_of_champions = std::make_shared<Room>("Hall of Champions",
-                                      "Statues of legendary Zork heroes line the walls.\n",
-                                      "Pay homage to the heroes in the correct order.", "heroes");
+    std::shared_ptr<Room> guardians_keep = std::make_shared<Room>("Guardian’s Keep",
+                                  "A heavily fortified room where the Guardian of the Orb resides. The Guardian’s presence is imposing, and the air crackles with magical energy.\n",
+                                  "Defeat the Guardian to proceed.", "guardian");
 
-    std::shared_ptr<Room> treasure_vault = std::make_shared<Room>("Treasure Vault",
-                                    "A room filled with gold, jewels, and a large, ornate chest.\n",
-                                    "Solve the final lock on the chest to claim your reward.", "unlock");
+    std::shared_ptr<Room> chamber_of_eternity = std::make_shared<Room>("Chamber of Eternity",
+                                    "The final room where the Orb of Eternity rests on a pedestal, radiating with immense power. The room is filled with an eerie, otherworldly light.\n",
+                                    "Solve the final puzzle to claim the Orb.", "puzzle");
 
     // Create passages between the rooms
-    Passage::createBasicPassage(entrance_hall.get(), mirror_chamber.get(), "north", true);
-    Passage::createBasicPassage(mirror_chamber.get(), entrance_hall.get(), "south", true);
-    Passage::createBasicPassage(mirror_chamber.get(), library_of_whispers.get(), "east", true);
-    Passage::createBasicPassage(library_of_whispers.get(), mirror_chamber.get(), "west", true);
-    Passage::createBasicPassage(library_of_whispers.get(), clockwork_room.get(), "north", true);
-    Passage::createBasicPassage(clockwork_room.get(), library_of_whispers.get(), "south", true);
-    Passage::createBasicPassage(clockwork_room.get(), garden_of_illusions.get(), "east", true);
-    Passage::createBasicPassage(garden_of_illusions.get(), clockwork_room.get(), "west", true);
-    Passage::createBasicPassage(garden_of_illusions.get(), hall_of_echoes.get(), "north", true);
-    Passage::createBasicPassage(hall_of_echoes.get(), garden_of_illusions.get(), "south", true);
-    Passage::createBasicPassage(hall_of_echoes.get(), frozen_chamber.get(), "east", true);
-    Passage::createBasicPassage(frozen_chamber.get(), hall_of_echoes.get(), "west", true);
-    Passage::createBasicPassage(frozen_chamber.get(), shadow_room.get(), "north", true);
-    Passage::createBasicPassage(shadow_room.get(), frozen_chamber.get(), "south", true);
-    Passage::createBasicPassage(shadow_room.get(), hall_of_champions.get(), "east", true);
-    Passage::createBasicPassage(hall_of_champions.get(), shadow_room.get(), "west", true);
-    Passage::createBasicPassage(hall_of_champions.get(), treasure_vault.get(), "north", true);
-    Passage::createBasicPassage(treasure_vault.get(), hall_of_champions.get(), "south", true);
+    Passage::createBasicPassage(catacomb_entrance.get(), hall_of_whispers.get(), "north", true);
+    Passage::createBasicPassage(hall_of_whispers.get(), catacomb_entrance.get(), "south", true);
+    Passage::createBasicPassage(hall_of_whispers.get(), hidden_passageway.get(), "east", true);
+    Passage::createBasicPassage(hidden_passageway.get(), hall_of_whispers.get(), "west", true);
+    Passage::createBasicPassage(hall_of_whispers.get(), archive_of_elders.get(), "west", true);
+    Passage::createBasicPassage(archive_of_elders.get(), hall_of_whispers.get(), "east", true);
+    Passage::createBasicPassage(hidden_passageway.get(), sanctuary_of_light.get(), "north", true);
+    Passage::createBasicPassage(sanctuary_of_light.get(), hidden_passageway.get(), "south", true);
+    Passage::createBasicPassage(archive_of_elders.get(), armory_of_valor.get(), "north", true);
+    Passage::createBasicPassage(armory_of_valor.get(), archive_of_elders.get(), "south", true);
+    Passage::createBasicPassage(sanctuary_of_light.get(), hall_of_mirrors.get(), "east", true);
+    Passage::createBasicPassage(hall_of_mirrors.get(), sanctuary_of_light.get(), "west", true);
+    Passage::createBasicPassage(armory_of_valor.get(), throne_of_kings.get(), "north", true);
+    Passage::createBasicPassage(throne_of_kings.get(), armory_of_valor.get(), "south", true);
+    Passage::createBasicPassage(hall_of_mirrors.get(), guardians_keep.get(), "north", true);
+    Passage::createBasicPassage(guardians_keep.get(), hall_of_mirrors.get(), "south", true);
+    Passage::createBasicPassage(guardians_keep.get(), chamber_of_eternity.get(), "north", true);
+    Passage::createBasicPassage(chamber_of_eternity.get(), guardians_keep.get(), "south", true);
 
-    // Create a character and add it to a room
-    std::shared_ptr<Character> rodie_jaz = std::make_shared<Character>("Rodie Jaz", "A brave adventurer with a keen sense of direction.");
-    entrance_hall->addCharacter(rodie_jaz);
 
     // Create items and add them to rooms
-    std::shared_ptr<Item> translators_amulet = std::make_shared<Item>("Translator's Amulet", "A magical amulet that helps you understand ancient languages.");
-    entrance_hall->addItem(translators_amulet);
+    std::shared_ptr<Item> lever = std::make_shared<Item>("Hidden Lever", "A lever hidden in the wall.");
+    catacomb_entrance->addItem(lever);
 
-    std::shared_ptr<Item> silver_key = std::make_shared<Item>("Silver Key", "A shiny silver key that unlocks mysterious doors.");
-    mirror_chamber->addItem(silver_key);
+    std::shared_ptr<Item> whispers_book = std::make_shared<Item>("Whispers Book", "A book that helps decipher the whispers.");
+    hall_of_whispers->addItem(whispers_book);
 
-    std::shared_ptr<Item> stick = std::make_shared<Item>("Stick", "A sturdy stick that can be used for crafting.");
-    mirror_chamber->addItem(stick);
+    std::shared_ptr<Item> shadow_key = std::make_shared<Item>("Hidden key", "A key found by aligning the shadows.");
+    hidden_passageway->addItem(shadow_key);
 
-    std::shared_ptr<Item> mysterious_book = std::make_shared<Item>("Mysterious Book", "An ancient book filled with strange writings.");
-    library_of_whispers->addItem(mysterious_book);
+    std::shared_ptr<Item> translation_scroll = std::make_shared<Item>("Translation Scroll", "A scroll that translates ancient text.");
+    archive_of_elders->addItem(translation_scroll);
 
-    std::shared_ptr<Item> clockwork_key = std::make_shared<Item>("Clockwork Key", "A key that fits into the clockwork mechanism.");
-    clockwork_room->addItem(clockwork_key);
+    std::shared_ptr<Item> crystal_light = std::make_shared<Item>("Crystal Light", "A crystal that reveals hidden paths.");
+    sanctuary_of_light->addItem(crystal_light);
 
-    std::shared_ptr<Item> enchanted_flower = std::make_shared<Item>("Enchanted Flower", "A flower with magical properties.");
-    garden_of_illusions->addItem(enchanted_flower);
+    std::shared_ptr<Item> valor_armor = std::make_shared<Item>("Valor Armor", "A piece of armor that grants access to the next area.");
+    armory_of_valor->addItem(valor_armor);
 
-    std::shared_ptr<Item> echo_stone = std::make_shared<Item>("Echo Stone", "A stone that resonates with echoing sounds.");
-    hall_of_echoes->addItem(echo_stone);
+    std::shared_ptr<Item> mirror_shard = std::make_shared<Item>("Mirror Shard", "A shard that can be used to align mirrors.");
+    hall_of_mirrors->addItem(mirror_shard);
 
-    std::shared_ptr<Item> fire_amulet = std::make_shared<Item>("Fire Amulet", "An amulet that radiates warmth and can melt ice.");
-    frozen_chamber->addItem(fire_amulet);
+    std::shared_ptr<Item> kings_compartment = std::make_shared<Item>("King's Compartment Key", "A key to the hidden compartment in the throne.");
+    throne_of_kings->addItem(kings_compartment);
 
-    std::shared_ptr<Item> shadow_lantern = std::make_shared<Item>("Shadow Lantern", "A lantern that casts eerie shadows.");
-    shadow_room->addItem(shadow_lantern);
+    std::shared_ptr<Item> guardian_token = std::make_shared<Item>("Guardian Token", "A token that signifies the defeat of the Guardian.");
+    guardians_keep->addItem(guardian_token);
 
-    std::shared_ptr<Item> heros_medallion = std::make_shared<Item>("Hero's Medallion", "A medallion awarded to legendary heroes.");
-    hall_of_champions->addItem(heros_medallion);
-
-    std::shared_ptr<Item> master_key = std::make_shared<Item>("Master Key", "A key that unlocks the final treasure chest.");
-    treasure_vault->addItem(master_key);
+    std::shared_ptr<Item> orb_of_eternity = std::make_shared<Item>("Orb of Eternity", "The powerful Orb of Eternity.");
+    chamber_of_eternity->addItem(orb_of_eternity);
 
     // Initialize the game engine with the starting room
-    ZOOrkEngine zoork(entrance_hall);
+    ZOOrkEngine zoork(catacomb_entrance);
 
     zoork.run();
 

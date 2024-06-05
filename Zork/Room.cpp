@@ -1,33 +1,17 @@
 #include "Room.h"
 #include "NullPassage.h"
 #include <utility>
-#include <random>
 #include <algorithm>
 
 Room::Room(const std::string &n, const std::string &d, const std::string& p, const std::string& s)
-    : Location(n, d), description(d), puzzle(p), solution(s) {
+    : Location(n, d), description(d) {
     enterCommand = std::make_shared<RoomDefaultEnterCommand>(this);
-    if (p == "box puzzle") {
-        has_box_puzzle = true;
-        initializeBoxPuzzle();
-    }
 }
 
 Room::Room(const std::string &n, const std::string &d, std::shared_ptr<Command> c, const std::string& p, const std::string& s)
-    : Location(n, d, std::move(c)), description(d), puzzle(p), solution(s) {
-    if (p == "box puzzle") {
-        has_box_puzzle = true;
-        initializeBoxPuzzle();
-    }
+    : Location(n, d, std::move(c)), description(d) {
 }
 
-void Room::initializeBoxPuzzle() {
-    // Randomly assign a box to contain the key (1, 2, or 3)
-    std::random_device rd;
-    std::mt19937 mt(rd());
-    std::uniform_int_distribution<int> dist(1, 3);
-    box_with_key = dist(mt);
-}
 
 void Room::addPassage(const std::string &direction, std::shared_ptr<Passage> p) {
     passageMap[direction] = std::move(p);
@@ -76,25 +60,6 @@ void Room::showItems() const {
     }
 }
 
-bool Room::solvePuzzle(const std::string& attempt) {
-    std::string lowerAttempt = attempt;
-    std::string lowerSolution = solution;
-    std::transform(lowerAttempt.begin(), lowerAttempt.end(), lowerAttempt.begin(), ::tolower);
-    std::transform(lowerSolution.begin(), lowerSolution.end(), lowerSolution.begin(), ::tolower);
-    if (lowerAttempt == lowerSolution) {
-        puzzleSolved = true;
-        return true;
-    }
-    return false;
-}
-
-bool Room::solveBoxPuzzle(int boxNumber) {
-    if (boxNumber == box_with_key) {
-        puzzleSolved = true;
-        return true;
-    }
-    return false;
-}
 
 void Room::addCharacter(std::shared_ptr<Character> character) {
     characters.push_back(character);

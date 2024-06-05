@@ -28,8 +28,6 @@ public:
     std::shared_ptr<Item> getItem(const std::string& itemName);
     std::vector<std::shared_ptr<Item>> getInventory() const; // Add this line
     void showInventory(bool gameOver = false) const; // Add gameOver parameter
-    void reduceHealth(int amount);
-    int getHealth() const { return health; }
     bool hasItem(const std::string& itemName) const;
 
     Player(const Player &) = delete;
@@ -40,10 +38,10 @@ private:
     static Player *playerInstance;
     Room* currentRoom;
     std::vector<std::shared_ptr<Item>> inventory;
-    int health;
+    
 
     Player() : Character("You", "You are a person, alike in dignity to any other, but uniquely you."),
-               currentRoom(new NullRoom()), health(100) {}
+               currentRoom(new NullRoom()) {}
 };
 
 #endif //ZOORK_PLAYER_H
