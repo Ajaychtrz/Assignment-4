@@ -194,35 +194,36 @@ void ZOOrkEngine::handleUseCommand(std::vector<std::string> arguments) {
 
 void ZOOrkEngine::handleSolveCommand(std::vector<std::string> arguments) {
     Room* currentRoom = player->getCurrentRoom();
-    if (!currentRoom->hasPuzzle()) {
-        std::cout << "There is no puzzle to solve in this room.\n";
-        displayPrompt();
-        return;
-    }
-
-    if (currentRoom->getName() == "Clockwork Room" && currentRoom->hasBoxPuzzle()) {
+    
+    if (currentRoom->hasBoxPuzzle()) {
         int choice;
-        std::cout << "There are three boxes here. One contains the item to unlock the next room, the other two contain traps. Choose a box (1, 2, or 3): ";
+        std::cout << "There are three boxes here. One of them contains the key to the next room, the other two have traps that reduce your HP by 15%. Choose a box (1, 2, or 3): ";
         std::cin >> choice;
-        if (currentRoom->solveBoxPuzzle(choice, player)) {
-            std::cout << "You found the item to unlock the Garden of Illusions!\n";
-        }
-    } else {
-        std::string attempt;
-        if (arguments.empty()) {
-            std::cout << "Solve the puzzle: " << currentRoom->getPuzzle() << "\n";
-            std::getline(std::cin, attempt);
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');  // Clear the input buffer
+        if (currentRoom->solveBoxPuzzle(choice)) {
+            std::cout << "Correct! You have found the key in the box.\n";
         } else {
-            attempt = arguments[0];
+            player->reduceHealth(15);
+            std::cout << "Incorrect! The box contained a trap. Your health is now " << player->getHealth() << "%.\n";
         }
-
-        if (currentRoom->solvePuzzle(attempt)) {
+    } else if (currentRoom->hasPuzzle()) {
+        std::cout << "Solve the puzzle: " << currentRoom->getPuzzle() << "\n";
+        std::string attempt;
+        std::getline(std::cin, attempt); // Read the user input
+        // Make the comparison case-insensitive
+        std::transform(attempt.begin(), attempt.end(), attempt.begin(), ::tolower);
+        std::string solution = currentRoom->getSolution();
+        std::transform(solution.begin(), solution.end(), solution.begin(), ::tolower);
+        std::cout << "Attempt: " << attempt << ", Solution: " << solution << "\n";  // Debug print
+        if (attempt == solution) {
+            currentRoom->solvePuzzle(attempt);
             std::cout << "Correct! You have solved the puzzle in the " << currentRoom->getName() << ". Now you can pick the item as a reward.\n";
         } else {
             std::cout << "Incorrect. Try again.\n";
         }
+    } else {
+        std::cout << "There is no puzzle to solve in this room.\n";
     }
-
     displayPrompt();
 }
 

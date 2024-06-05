@@ -22,7 +22,7 @@ int main() {
 
     std::shared_ptr<Room> clockwork_room = std::make_shared<Room>("Clockwork Room",
                                  "A room dominated by a giant, intricate clockwork mechanism.\n",
-                                 "Adjust the gears and levers to set the clock to the correct time.", "time");
+                                 "box puzzle", "");
 
     std::shared_ptr<Room> garden_of_illusions = std::make_shared<Room>("Garden of Illusions",
                                     "An underground garden with plants that change shape and color.\n",
@@ -105,9 +105,6 @@ int main() {
 
     std::shared_ptr<Item> master_key = std::make_shared<Item>("Master Key", "A key that unlocks the final treasure chest.");
     treasure_vault->addItem(master_key);
-
-    // Add box puzzle to Clockwork Room
-    clockwork_room->setBoxPuzzle({"Clockwork Key", "trap", "trap"});
 
     // Initialize the game engine with the starting room
     ZOOrkEngine zoork(entrance_hall);

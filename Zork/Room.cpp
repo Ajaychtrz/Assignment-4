@@ -1,16 +1,32 @@
 #include "Room.h"
 #include "NullPassage.h"
-#include <algorithm>
-#include <iostream>
 #include <utility>
+#include <random>
 
-Room::Room(const std::string &n, const std::string &d, const std::string &puzzle, const std::string &solution)
-    : Location(n, d), description(d), puzzle(puzzle), solution(solution) {
+Room::Room(const std::string &n, const std::string &d, const std::string& p, const std::string& s)
+    : Location(n, d), description(d), puzzle(p), solution(s) {
     enterCommand = std::make_shared<RoomDefaultEnterCommand>(this);
+    if (p == "box puzzle") {
+        has_box_puzzle = true;
+        // Randomly assign a box to contain the key (1, 2, or 3)
+        std::random_device rd;
+        std::mt19937 mt(rd());
+        std::uniform_int_distribution<int> dist(1, 3);
+        box_with_key = dist(mt);
+    }
 }
 
-Room::Room(const std::string &n, const std::string &d, std::shared_ptr<Command> c, const std::string &puzzle, const std::string &solution)
-    : Location(n, d, std::move(c)), description(d), puzzle(puzzle), solution(solution) {}
+Room::Room(const std::string &n, const std::string &d, std::shared_ptr<Command> c, const std::string& p, const std::string& s)
+    : Location(n, d, std::move(c)), description(d), puzzle(p), solution(s) {
+    if (p == "box puzzle") {
+        has_box_puzzle = true;
+        // Randomly assign a box to contain the key (1, 2, or 3)
+        std::random_device rd;
+        std::mt19937 mt(rd());
+        std::uniform_int_distribution<int> dist(1, 3);
+        box_with_key = dist(mt);
+    }
+}
 
 void Room::addPassage(const std::string &direction, std::shared_ptr<Passage> p) {
     passageMap[direction] = std::move(p);
@@ -31,115 +47,54 @@ std::shared_ptr<Passage> Room::getPassage(const std::string &direction) {
     }
 }
 
+std::string Room::getTargetDescription(const std::string &target) const {
+    return "There is nothing special about " + target + ".";
+}
+
 void Room::addItem(std::shared_ptr<Item> item) {
     items.push_back(item);
 }
 
-void Room::removeItem(const std::string &itemName) {
+void Room::removeItem(const std::string& itemName) {
     items.erase(std::remove_if(items.begin(), items.end(),
-                               [&itemName](std::shared_ptr<Item> item) { return item->getName() == itemName; }),
-                items.end());
-}
-
-std::shared_ptr<Item> Room::getItem(const std::string &itemName) {
-    std::string lowerItemName = itemName;
-    std::transform(lowerItemName.begin(), lowerItemName.end(), lowerItemName.begin(), ::tolower);
-
-    for (const auto &item : items) {
-        std::string lowerItem = item->getName();
-        std::transform(lowerItem.begin(), lowerItem.end(), lowerItem.begin(), ::tolower);
-        if (lowerItem == lowerItemName) {
-            return item;
-        }
-    }
-    return nullptr;
-}
-
-void Room::showItems() const {
-    int index = 1;
-    for (const auto& item : items) {
-        std::cout << index++ << ". " << item->getName() << "\n";
-    }
+               [&itemName](const std::shared_ptr<Item>& item) { return item->getName() == itemName; }),
+               items.end());
 }
 
 const std::vector<std::shared_ptr<Item>>& Room::getItems() const {
     return items;
 }
 
-void Room::addCharacter(std::shared_ptr<Character> character) {
-    characters.push_back(character);
-}
-
-void Room::removeCharacter(const std::string &characterName) {
-    characters.erase(std::remove_if(characters.begin(), characters.end(),
-                                    [&characterName](std::shared_ptr<Character> character) { return character->getName() == characterName; }),
-                     characters.end());
-}
-
-std::shared_ptr<Character> Room::getCharacter(const std::string &characterName) {
-    for (const auto &character : characters) {
-        if (character->getName() == characterName) {
-            return character;
+void Room::showItems() const {
+    if (items.empty()) {
+        std::cout << "None\n";
+    } else {
+        for (size_t i = 0; i < items.size(); ++i) {
+            std::cout << i + 1 << ". " << items[i]->getName() << "\n";
         }
     }
-    return nullptr;
 }
 
-void Room::showCharacters() const {
-    for (const auto& character : characters) {
-        std::cout << character->getName() << ", ";
-    }
-    std::cout << "\n";
-}
-
-const std::vector<std::shared_ptr<Character>>& Room::getCharacters() const {
-    return characters;
-}
-
-std::string Room::getTargetDescription(const std::string &target) const {
-    // Check for items first
-    for (const auto &item : items) {
-        if (item->getName() == target) {
-            return item->getDescription();
-        }
-    }
-
-    // Check for characters
-    for (const auto &character : characters) {
-        if (character->getName() == target) {
-            return character->getDescription();
-        }
-    }
-
-    return "There is nothing special about " + target + ".";
-}
-
-bool Room::solvePuzzle(const std::string &attempt) {
-    if (attempt == solution) {
+bool Room::solvePuzzle(const std::string& attempt) {
+    std::string lowerAttempt = attempt;
+    std::string lowerSolution = solution;
+    std::transform(lowerAttempt.begin(), lowerAttempt.end(), lowerAttempt.begin(), ::tolower);
+    std::transform(lowerSolution.begin(), lowerSolution.end(), lowerSolution.begin(), ::tolower);
+    if (lowerAttempt == lowerSolution) {
         puzzleSolved = true;
         return true;
     }
     return false;
 }
 
-void Room::setBoxPuzzle(const std::vector<std::string> &boxItems) {
-    this->boxItems = boxItems;
-    hasBoxPuzzle = true;
-}
-
-bool Room::solveBoxPuzzle(int choice, std::shared_ptr<Player> player) {
-    if (!hasBoxPuzzle) {
-        return false;
-    }
-    if (choice >= 1 && choice <= boxItems.size()) {
-        if (boxItems[choice - 1] != "trap") {
-            puzzleSolved = true;
-            return true;
-        } else {
-            player->reduceHealth(15);
-            std::cout << "You triggered a trap! Your health is now " << player->getHealth() << "%.\n";
-            return false;
-        }
+bool Room::solveBoxPuzzle(int boxNumber) {
+    if (boxNumber == box_with_key) {
+        puzzleSolved = true;
+        return true;
     }
     return false;
+}
+
+void Room::addCharacter(std::shared_ptr<Character> character) {
+    characters.push_back(character);
 }

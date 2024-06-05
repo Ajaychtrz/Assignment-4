@@ -8,53 +8,51 @@
 #include <map>
 #include <vector>
 #include <memory>
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <random>
 
 class Passage;
 
 class Room : public Location {
 public:
-    Room(const std::string &, const std::string &, const std::string &puzzle = "", const std::string &solution = "");
-
-    Room(const std::string &, const std::string &, std::shared_ptr<Command>, const std::string &puzzle = "", const std::string &solution = "");
+    Room(const std::string &, const std::string &, const std::string& puzzle = "", const std::string& solution = "");
+    Room(const std::string &, const std::string &, std::shared_ptr<Command>, const std::string& puzzle = "", const std::string& solution = "");
 
     void addPassage(const std::string &, std::shared_ptr<Passage>);
     void removePassage(const std::string &);
     std::shared_ptr<Passage> getPassage(const std::string &);
     std::string getDescription() const { return description; }
     std::string getTargetDescription(const std::string &) const;
-    void addItem(std::shared_ptr<Item>);
-    void removeItem(const std::string &);
-    std::shared_ptr<Item> getItem(const std::string &);
-    void showItems() const;
-    const std::vector<std::shared_ptr<Item>>& getItems() const;
-
-    // Add methods for managing characters
-    void addCharacter(std::shared_ptr<Character>);
-    void removeCharacter(const std::string &);
-    std::shared_ptr<Character> getCharacter(const std::string &);
-    void showCharacters() const;
-    const std::vector<std::shared_ptr<Character>>& getCharacters() const;
-
-    // Puzzle-related methods
     bool hasPuzzle() const { return !puzzle.empty(); }
-    std::string getPuzzle() const { return puzzle; }
-    bool solvePuzzle(const std::string &attempt);
+    bool solvePuzzle(const std::string& attempt);
     bool isPuzzleSolved() const { return puzzleSolved; }
+    std::string getSolution() const { return solution; }
+    std::string getPuzzle() const { return puzzle; } // Add this line
 
-    // Box puzzle related methods
-    void setBoxPuzzle(const std::vector<std::string> &boxItems);
-    bool solveBoxPuzzle(int choice, std::shared_ptr<Player> player);
+    void addItem(std::shared_ptr<Item> item);
+    void removeItem(const std::string& itemName);
+    const std::vector<std::shared_ptr<Item>>& getItems() const;
+    void showItems() const;
 
-protected:
+    // Box puzzle
+    bool hasBoxPuzzle() const { return has_box_puzzle; }
+    void setBoxPuzzle(bool status) { has_box_puzzle = status; }
+    bool solveBoxPuzzle(int boxNumber);
+
+    void addCharacter(std::shared_ptr<Character> character);
+
+private:
     std::map<std::string, std::shared_ptr<Passage>> passageMap;
     std::string description;
     std::string puzzle;
     std::string solution;
     bool puzzleSolved = false;
     std::vector<std::shared_ptr<Item>> items;
+    bool has_box_puzzle = false;
+    int box_with_key;
     std::vector<std::shared_ptr<Character>> characters;
-    std::vector<std::string> boxItems;
-    bool hasBoxPuzzle = false;
 };
 
 #endif //ZOORK_ROOM_H
